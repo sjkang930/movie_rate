@@ -9,14 +9,6 @@ import { signIn } from "next-auth/react"
 export async function getServerSideProps(context) {
   const session = await getServerSession(context.req, context.res, authOptions)
 
-  // if (!session) {
-  // return {
-  //   redirect: {
-  //     // destination: '/',
-  //     permanent: false,
-  //   },
-  // }
-
 
   return {
     props: {
@@ -37,14 +29,14 @@ export default function Home({ session }) {
   useEffect(() => {
     (async () => {
       const response = await axios.get('https://fdy5xesef5.execute-api.ca-central-1.amazonaws.com/movies');
-      setData(response.data?.sort((a, b) => a.Id - b.Id));
+      setData(response.data?.sort((a, b) => a.createdAt - b.createdAt));
     }
     )();
   }, []);
   useEffect(() => {
     (async () => {
       const response = await axios.get('https://fdy5xesef5.execute-api.ca-central-1.amazonaws.com/ratings');
-      setRatings(response.data?.sort((a, b) => a.Id - b.Id));
+      setRatings(response.data?.sort((a, b) => a.createdAt - b.createdAt));
     }
     )();
   }, []);

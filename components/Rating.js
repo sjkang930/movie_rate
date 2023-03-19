@@ -21,7 +21,7 @@ export default function Rating({ data, setData, ratings, setRatings, session }) 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!session?.accessToken) {
+        if (!session) {
             signIn();
             return
         }
