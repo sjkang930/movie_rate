@@ -53,8 +53,7 @@ export default function Movie({ session }) {
         Title: title,
         Description: description,
         Genre: genre,
-        Year: year,
-        CreatedAt: movie.CreatedAt,
+        Year: Number(year),
       },
     )
     router.push('/')
