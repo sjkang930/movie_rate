@@ -20,10 +20,10 @@ export default function Rating({ data, setData, ratings, setRatings, session }) 
     const [movieRateRating, setMovieRateRating] = useState('');
 
     const handleSubmit = async (e) => {
-        // if (!session) {
-        //     signIn();
-        //     return
-        // }
+        if (!session) {
+            signIn();
+            return
+        }
         e.preventDefault();
         const movie = data.find((movie) => movie.Title === e.target.movie.value);
         const response = await axios.post(`https://fdy5xesef5.execute-api.ca-central-1.amazonaws.com/movies/${movie.Id}/ratings`, {
@@ -35,6 +35,7 @@ export default function Rating({ data, setData, ratings, setRatings, session }) 
         setRatings([...ratings, response.data]);
         setMovieRateComment('');
         setMovieRateRating('');
+        return
         // router.push(`/movies/${movie.Id}`);
     }
 
@@ -58,12 +59,8 @@ export default function Rating({ data, setData, ratings, setRatings, session }) 
                     onChange={(e) => setMovieRateRating(e.target.value)} value={movieRateRating}
                 />
                 <div className={styles.buttons}>
-                    <button onClick={() => {
-                        if (!session) {
-                            signIn();
-                            return
-                        }
-                    }} className={styles.button}
+                    <button
+                        className={styles.button}
                         type="submit">Add Rate</button>
                 </div>
             </form>
