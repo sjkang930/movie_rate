@@ -29,14 +29,13 @@ export default function Rating({ data, setData, ratings, setRatings, session }) 
         const response = await axios.post(`https://fdy5xesef5.execute-api.ca-central-1.amazonaws.com/movies/${movie.Id}/ratings`, {
             MovieId: movie.Id,
             Comment: e.target.comment.value,
-            Rate: e.target.rating.value,
+            Rate: e.target.rating.value
         });
         console.log("response.data", response.data);
         setRatings([...ratings, response.data]);
         setMovieRateComment('');
         setMovieRateRating('');
-        return
-        // router.push(`/movies/${movie.Id}`);
+        return;
     }
 
     return (

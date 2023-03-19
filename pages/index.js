@@ -81,7 +81,7 @@ export default function Home({ session }) {
               </div>
             </form>
           </div>
-          <Rating data={data} setData={setData} ratings={ratings} setRatings={setRatings} />
+          <Rating data={data} setData={setData} ratings={ratings} setRatings={setRatings} session={session} />
         </div>
       </div>
     </div>
